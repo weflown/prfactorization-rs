@@ -32,5 +32,38 @@ fn findprimefactors(n: usize) -> Vec<usize> {
         }
     }
 
-    return vecofprimedividers;
+    let mut duplicate: u64 = 0;
+    for (i, &item) in vecofprimedividers.iter().enumerate() {
+        duplicate = duplicate * item;
+    };
+
+    if duplicate != x as u64 {
+        let mut newvecofpd = vecofprimedividers.clone();
+        let mut sumvec: u64 = 0;
+        loop {
+            for (i, &item) in vecofprimedividers.iter().enumerate() {
+                sumvec = sumvec * item;
+            };
+
+            if sumvec == x as u64 {
+                break;
+            } else if sumvec != x as u64 {
+                let vectoparse = sieveoferatosphene(x as u64);
+                for (i, &item) in vectoparse.iter().enumerate() {
+                    if x as u64 % (sumvec * item) == 0 && (sumvec * item) != x as u64 {
+                        newvecofpd.push(item);
+                        break;
+                    } else if x as u64 % (sumvec * item) != 0 {
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+            };
+        }
+
+        return newvecofpd;
+    } else {
+        return vecofprimedividers;
+    }
 }
