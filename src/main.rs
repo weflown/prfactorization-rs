@@ -11,12 +11,12 @@ fn main() {
     println!("{:?}", test);
 }
 
-fn findprimefactors(n: usize) -> Vec<usize> {
+fn findprimefactors(x: usize) -> Vec<usize> {
     let mut vecofdividers: Vec<usize> = Vec::new();
-    let halfof: f32 = (n as f32).sqrt();
+    let halfof: f32 = (x as f32).sqrt();
     let uhalfof: u64 = num::ToPrimitive::to_u64(&halfof.floor()).unwrap();  
     for divider in 1..uhalfof {
-        if n % divider as usize == 0 {
+        if x % divider as usize == 0 {
             vecofdividers.push(divider as usize);
         } else {
             continue;
